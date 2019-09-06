@@ -1,20 +1,12 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { createAppContainer } from 'react-navigation'; // Version can be specified in package.json
+import { createStackNavigator } from 'react-navigation-stack';
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, View, Text} from 'react-native';
-
-
-type Props = {};
-export default class App extends Component<Props> {
+class HomeScreen extends React.Component {
   render() {
-  return (
-    <View style = {style.container}>
+    return (
+     <View style = {style.container}>
         <View style = {style.bg1}>
           <Text style = {style.judulBerita}>Judul Berita</Text>
           <Text style = {style.isiBerita}>Isi Berita React Native</Text>
@@ -36,8 +28,8 @@ export default class App extends Component<Props> {
         </View>
       </View>
     );
-  }
-};
+  }  
+}
 
 const style = StyleSheet.create({
   container: {
@@ -64,4 +56,13 @@ const style = StyleSheet.create({
 
 });
 
+const AppNavigator = createStackNavigator({
+  Home: {
+    screen: HomeScreen,
+  },
+ 
+}, {
+    initialRouteName: 'Home',
+});
 
+export default createAppContainer(AppNavigator);
