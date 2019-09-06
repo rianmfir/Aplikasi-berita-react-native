@@ -1,20 +1,24 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native';
 import { createAppContainer } from 'react-navigation'; // Version can be specified in package.json
 import { createStackNavigator } from 'react-navigation-stack';
 
-class HomeScreen extends React.Component {
+class HomeBerita extends React.Component {
   static navigationOptions = {
     title: 'Berita React Native',
   };
-  
+
   render() {
     return (
      <View style = {style.container}>
+       <TouchableNativeFeedback
+            onPress={() => this.props.navigation.navigate('DetailBerita')}
+            background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
         <View style = {style.bg1}>
           <Text style = {style.judulBerita}>Judul Berita</Text>
           <Text style = {style.isiBerita}>Isi Berita React Native</Text>
         </View>
+      </TouchableNativeFeedback>
 
         <View style = {style.bg1}>
           <Text style = {style.judulBerita}>Judul Berita</Text>
@@ -33,6 +37,17 @@ class HomeScreen extends React.Component {
       </View>
     );
   }  
+}
+
+class DetailBerita extends React.Component {
+  render(){
+    return(
+    <View style ={{ flex: 1 }}>
+      <Text>Halaman Detail Berita</Text>
+    </View>
+
+      );
+  }
 }
 
 const style = StyleSheet.create({
@@ -60,13 +75,14 @@ const style = StyleSheet.create({
 
 });
 
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen,
+const AppNavigator = createStackNavigator(
+  {
+    HomeBerita: HomeBerita,
+    DetailBerita: DetailBerita,
   },
- 
-}, {
-    initialRouteName: 'Home',
-});
+  {
+    initialRouteName: 'HomeBerita',
+  }
+);
 
 export default createAppContainer(AppNavigator);
