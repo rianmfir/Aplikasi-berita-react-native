@@ -4,6 +4,10 @@ import { createAppContainer } from 'react-navigation'; // Version can be specifi
 import { createStackNavigator } from 'react-navigation-stack';
 
 class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Berita React Native',
+  };
+  
   render() {
     return (
      <View style = {style.container}>
