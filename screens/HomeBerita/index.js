@@ -13,14 +13,14 @@ constructor(props) {
     title: 'Berita React Native',
   };
 
-  renderRow(item) {
+  renderRow({item}) {
     return(
       <TouchableNativeFeedback
           onPress={() => this.props.navigation.navigate('DetailBerita')}
           background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
         <View style = {style.bg1}>
-          <Text style = {style.judulBerita}>Judul Berita</Text>
-          <Text style = {style.isiBerita}>Isi Berita React Native</Text>
+          <Text style = {style.judulBerita}>{ item.judul_berita }</Text>
+          <Text style = {style.isiBerita}>{ item.isi_berita.substr(0, 100) }</Text>
         </View>
       </TouchableNativeFeedback>
       );
@@ -71,7 +71,7 @@ const style = StyleSheet.create({
   },
 
   judulBerita: {
-    fontSize: 24, 
+    fontSize: 20, 
     fontWeight: 'bold', 
   },
 
