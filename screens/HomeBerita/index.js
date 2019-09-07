@@ -3,51 +3,41 @@ import {View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native';
 
 
 class HomeBerita extends React.Component {
+
+constructor(props) {
+  super(props);
+  this.state = { listBerita: null}
+}
+
   static navigationOptions = {
     title: 'Berita React Native',
   };
 
+  renderRow(item) {
+    return(
+      <TouchableNativeFeedback
+          onPress={() => this.props.navigation.navigate('DetailBerita')}
+          background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+        <View style = {style.bg1}>
+          <Text style = {style.judulBerita}>Judul Berita</Text>
+          <Text style = {style.isiBerita}>Isi Berita React Native</Text>
+        </View>
+      </TouchableNativeFeedback>
+      );
+  }
+
+ 
   render() {
     return (
-    <View style = {style.container}>
-    <TouchableNativeFeedback
-            onPress={() => this.props.navigation.navigate('DetailBerita')}
-            background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
-        <View style = {style.bg1}>
-          <Text style = {style.judulBerita}>Judul Berita</Text>
-          <Text style = {style.isiBerita}>Isi Berita React Native</Text>
-        </View>
-    </TouchableNativeFeedback>
-       
-    <TouchableNativeFeedback
-            onPress={() => this.props.navigation.navigate('DetailBerita')}
-            background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
-        <View style = {style.bg1}>
-          <Text style = {style.judulBerita}>Judul Berita</Text>
-          <Text style = {style.isiBerita}>Isi Berita React Native</Text>
-        </View>
-    </TouchableNativeFeedback>
+      <View style = {style.container}>
 
-    <TouchableNativeFeedback
-            onPress={() => this.props.navigation.navigate('DetailBerita')}
-            background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
-        <View style = {style.bg1}>
-          <Text style = {style.judulBerita}>Judul Berita</Text>
-          <Text style = {style.isiBerita}>Isi Berita React Native</Text>
-        </View>
-    </TouchableNativeFeedback>
+      <FlatList
+        data={this.this.state..listBerita} //mengambil data di isi dari API
+        renderItem={this.renderRow.bind(this)} //lidt yang dipanggil ketita list dibuat atau di render(membuat sesuai jumlah berita yang ada(perulangan))
+      />
 
-    <TouchableNativeFeedback
-            onPress={() => this.props.navigation.navigate('DetailBerita')}
-            background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
-        <View style = {style.bg1}>
-          <Text style = {style.judulBerita}>Judul Berita</Text>
-          <Text style = {style.isiBerita}>Isi Berita eact Native</Text>
-        </View>
-    </TouchableNativeFeedback>
-        
       </View>
-    );
+      );
   }  
 }
 
