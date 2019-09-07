@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native';
+import {View, Text, FlatList, StyleSheet, TouchableNativeFeedback } from 'react-native';
 
 
 class HomeBerita extends React.Component {
@@ -37,13 +37,18 @@ constructor(props) {
     });
  }
 
+ componentDidMount() { // kondisi sebelum render terjadi
+    this.apiGetBerita();
+ }
+
   render() {
     return (
       <View style = {style.container}>
 
       <FlatList
-        data={this.this.state..listBerita} //mengambil data di isi dari API
+        data={this.state.listBerita} //mengambil data di isi dari API
         renderItem={this.renderRow.bind(this)} //lidt yang dipanggil ketita list dibuat atau di render(membuat sesuai jumlah berita yang ada(perulangan))
+        keyExtractor = {(item, index) => index.toString()} // untuk memberikan indeks terhadap data yang akan di render
       />
 
       </View>
