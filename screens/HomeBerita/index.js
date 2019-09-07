@@ -16,7 +16,7 @@ constructor(props) {
   renderRow({item}) {
     return(
       <TouchableNativeFeedback
-          onPress={() => this.props.navigation.navigate('DetailBerita')}
+          onPress={() => this.props.navigation.navigate('DetailBerita', { berita: item })}
           background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
         <View style = {style.bg1}>
           <Text style = {style.judulBerita}>{ item.judul_berita }</Text>
