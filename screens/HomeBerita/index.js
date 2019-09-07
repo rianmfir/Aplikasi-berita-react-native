@@ -26,7 +26,17 @@ constructor(props) {
       );
   }
 
- 
+ apiGetBerita(){
+  fetch('https://basicteknologi.co.id/beritareactnative/index.php/berita')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({ listBerita: responseJson });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+ }
+
   render() {
     return (
       <View style = {style.container}>
